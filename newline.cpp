@@ -1,19 +1,24 @@
 #include <iostream>
-int main(){
-    
-    std::cout<<"--------------------------------\n";
-    
-    std::cout<<"And this is by endl method"<< std::endl;
-    std::cout<<"And this is by endl method"<< std::endl;
-    
+#include <thread>
+#include <chrono>
 
-    std::cout<<"--------------------------------\n";
-    
-    std::cout<<"Hi(this is new line using \\n)\n";
-    std::cout<<"Hi(this is new line using \\n)\n";
-    
-    std::cout<<"--------------------------------\n";
-    return 0;
+int main()
+{
+    std::cout << "Using std::endl\n";
+
+    for(int i = 1; i <= 5; i++)
+    {
+        std::cout << i << std::endl;   // flushed every time
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+
+    std::cout << "\nUsing \\n\n";
+
+    for(int i = 1; i <= 5; i++)
+    {
+        std::cout << i << "\n";        // not flushed explicitly
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
 }
 
 /*newline : \n works as a newline character it puts the cursor to the next line in c++
